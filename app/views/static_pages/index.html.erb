@@ -1,0 +1,23 @@
+<%= form_with url: root_path, method: :get, local: true do |f| %>
+    <%= f.label :collection_id, "Collection ID"%> <br>
+    <%= f.text_field :collection_id %> <br>
+    <%= f.submit "Get Collection" %>
+<% end %>
+
+
+<a href="https://www.pexels.com">Photos provided by Pexels</a>
+
+<% if @e %>
+    <%= @e %>
+<% end %>
+
+<% if @media.present? %>
+    <h1>Collection</h1>
+    <% @media.each do |m| %>
+        <div>
+        <% if m.is_a?(Pexels::Photo) %>
+          <img src="<%= m.src['medium'] %>" style="max-width: 200px;">
+        <% end %>
+        </div>
+    <% end %>
+<% end %>
